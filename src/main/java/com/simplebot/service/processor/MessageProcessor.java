@@ -1,9 +1,9 @@
 package com.simplebot.service.processor;
 
 import com.simplebot.entity.Info;
-import com.simplebot.model.postedmessage.Message;
-import com.simplebot.model.postedmessage.PostMessage;
-import com.simplebot.model.postedmessage.Recipient;
+import com.simplebot.model.facebookpostedmessage.Message;
+import com.simplebot.model.facebookpostedmessage.PostMessage;
+import com.simplebot.model.facebookpostedmessage.Recipient;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;

@@ -4,13 +4,9 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.simplebot.FacebookSender;
 import com.simplebot.entity.Info;
-import com.simplebot.model.postedmessage.Message;
-import com.simplebot.model.postedmessage.PostMessage;
-import com.simplebot.model.postedmessage.Recipient;
+import com.simplebot.model.facebookpostedmessage.PostMessage;
 import com.simplebot.repository.InfoRepository;
 import com.simplebot.service.processor.MessageProcessor;
-import com.sun.org.apache.regexp.internal.RE;
-import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

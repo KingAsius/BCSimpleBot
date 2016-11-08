@@ -1,6 +1,6 @@
 package com.simplebot;
 
-import com.simplebot.model.postedmessage.PostMessage;
+import com.simplebot.model.facebookpostedmessage.PostMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
