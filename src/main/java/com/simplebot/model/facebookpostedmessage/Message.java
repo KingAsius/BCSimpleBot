@@ -1,4 +1,4 @@
-package com.simplebot.model.postedmessage;
+package com.simplebot.model.facebookpostedmessage;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

@@ -1,4 +1,4 @@
-package com.simplebot.model.postedmessage;
+package com.simplebot.model.facebookpostedmessage;
 
 /**
  * Created by Vladislav on 11/4/2016.
