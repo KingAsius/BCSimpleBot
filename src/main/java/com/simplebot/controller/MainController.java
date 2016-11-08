@@ -1,15 +1,10 @@
 package com.simplebot.controller;
 
-import com.simplebot.model.postedmessage.PostMessage;
 import com.simplebot.service.InfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.HttpClientErrorException;
-import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
 
@@ -26,7 +21,7 @@ public class MainController {
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public void PostMessageInfo(@RequestBody String messagesRecieved) throws IOException {
-        infoService.processReceivedJsonObject(messagesRecieved);
+        infoService.processReceivedMessage(messagesRecieved);
     }
 
 

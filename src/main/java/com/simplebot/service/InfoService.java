@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.Optional;
 
 /**
  * Created by Vladislav on 11/4/2016.
@@ -26,12 +27,12 @@ public class InfoService {
     @Autowired
     private MessageProcessor messageProcessor;
 
-    public void processReceivedJsonObject(String jsonObject) {
+    public void processReceivedMessage(String jsonObject) {
         Info info = selectInfoFromJson(jsonObject);
         infoRepository.saveAndFlush(info);
-        PostMessage postedMessage = messageProcessor.processMessage(info);
-        if (postedMessage != null) {
-            FacebookSender.sendMessage(postedMessage);
+        Optional<PostMessage> postedMessage = messageProcessor.processMessage(info);
+        if (postedMessage.isPresent()) {
+            FacebookSender.sendMessage(postedMessage.get());
         } else {
             try {
                 infoRepository.getLastSavedUserInfo(info.getId()).setHours(Integer.parseInt(info.getText()));
