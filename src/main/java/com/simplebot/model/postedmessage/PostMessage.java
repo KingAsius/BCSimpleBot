@@ -1,4 +1,4 @@
-package com.simplebot.entity;
+package com.simplebot.model.postedmessage;
 
 /**
  * Created by Vladislav on 11/4/2016.

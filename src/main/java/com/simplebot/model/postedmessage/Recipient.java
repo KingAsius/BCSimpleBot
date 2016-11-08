@@ -1,4 +1,4 @@
-package com.simplebot.entity;
+package com.simplebot.model.postedmessage;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -7,20 +7,20 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class Recipient {
     @JsonProperty("id")
-    private String id;
+    private long id;
 
-    public Recipient(String id) {
+    public Recipient(long id) {
         this.id = id;
     }
 
     public Recipient() {
     }
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 }

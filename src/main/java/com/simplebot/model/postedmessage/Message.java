@@ -1,4 +1,4 @@
-package com.simplebot.entity;
+package com.simplebot.model.postedmessage;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

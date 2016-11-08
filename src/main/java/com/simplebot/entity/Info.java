@@ -1,9 +1,8 @@
 package com.simplebot.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.sql.Date;
+import java.time.LocalDate;
 
 /**
  * Created by Vladislav on 11/3/2016.
@@ -11,15 +10,21 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "info")
 public class Info {
-    @Id
-    @Column(name = "id")
-    private String id;
 
-    @Column(name = "message")
-    private String message;
+    @Id
+    @GeneratedValue
+    private int id;
+
+    @Column(name = "id")
+    private long usedId;
+
+    @Column
+    private Date date = Date.valueOf(LocalDate.now());
 
     @Column(name = "hours")
     private int hours;
+
+    private String text;
 
     public int getHours() {
         return hours;
@@ -29,19 +34,43 @@ public class Info {
         this.hours = hours;
     }
 
-    public String getMessage() {
-        return message;
+    public Date getDate() {
+        return date;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
+    }
+
+    public long getUsedId() {
+        return usedId;
+    }
+
+    public void setUsedId(long usedId) {
+        this.usedId = usedId;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public Info(long usedId, int hours) {
+        this.usedId = usedId;
+        this.hours = hours;
+    }
+
+    public Info() {
     }
 }
