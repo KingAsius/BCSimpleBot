@@ -1,7 +1,8 @@
-package com.simplebot;
+package com.simplebot.service;
 
 import com.simplebot.model.facebookpostedmessage.PostMessage;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.HttpClientErrorException;
@@ -10,14 +11,15 @@ import org.springframework.web.client.RestTemplate;
 /**
  * Created by Vladislav on 11/8/2016.
  */
+@Service
 public class FacebookSender {
     private static String FACEBOOK_POST_URL = "https://graph.facebook.com/v2.6/me/messages?access_token=";
-    private static String ACCESS_TOKEN = "EAAQRCHoSZAuEBABZBaJ11S5P6JPnIFFXqWxY4ZCPc90C0X2n2ODPZB59zmmTyXmikrqoikbg6xr7vPr3WDxP6JSL3FZCVrhPENEKfzHViaOILHu9NfJ0L38QHjm5NlmtqIzFY3alyIqHsQ0EHgSo1cRqZAkiuJiQ0uZCHOb0Tal571d0NNIcusM";
+    private static String ACCESS_TOKEN = "EAAQa7ZBJjnHQBABQ5l5A4iF8DGtDR5xy70IuhCC0Rq3ZBbJZBz7zhf33b05HSUZCpDhBZBLEZAPA5TwJemJTfRNbHdEdqODlPUpuI2b0Raf3Qed4pVopZCNKqSlkBub13AaWRaFVd0ySK6y4jMBoiNAvncjRwNNLCBuZCqXDRNVxzGvIP9wRctTv";
 
     @Autowired
-    private static RestTemplate restTemplate;
+    private RestTemplate restTemplate;
 
-    public static void sendMessage(PostMessage postMessage) {
+    public void sendMessage(PostMessage postMessage) {
         try {
             MultiValueMap<String, String> headers = new LinkedMultiValueMap<String, String>();
             headers.add("Content-Type", "application/json");

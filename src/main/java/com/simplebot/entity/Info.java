@@ -15,7 +15,7 @@ public class Info {
     @GeneratedValue
     private int id;
 
-    @Column(name = "id")
+    @Column(name = "userId")
     private long usedId;
 
     @Column
