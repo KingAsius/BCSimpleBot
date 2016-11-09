@@ -20,7 +20,7 @@ public class DBConfig {
     @Bean
     DriverManagerDataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setUrl("jdbc:mysql://localhost:3306/public");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/public?useSSL=false");
         dataSource.setUsername("root");
         dataSource.setPassword("root");
         return dataSource;
