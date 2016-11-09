@@ -40,10 +40,5 @@ public class DBConfig {
         return emFactory;
     }
 
-    @Bean
-    JpaTransactionManager transactionManager() {
-        JpaTransactionManager transactionManager = new JpaTransactionManager();
-        transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
-        return transactionManager;
-    }
+
 }
