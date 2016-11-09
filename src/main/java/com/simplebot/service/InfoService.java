@@ -2,16 +2,13 @@ package com.simplebot.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.simplebot.FacebookSender;
 import com.simplebot.entity.Info;
-import com.simplebot.model.facebookpostedmessage.PostMessage;
 import com.simplebot.repository.InfoRepository;
 import com.simplebot.service.processor.MessageProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.Optional;
 
 /**
  * Created by Vladislav on 11/4/2016.
@@ -25,17 +22,8 @@ public class InfoService {
 
     public void processReceivedMessage(String jsonObject) {
         Info info = selectInfoFromJson(jsonObject);
-        infoRepository.saveAndFlush(info);
-        Optional<PostMessage> postedMessage = messageProcessor.processMessage(info);
-        if (postedMessage.isPresent()) {
-            FacebookSender.sendMessage(postedMessage.get());
-        } else {
-            try {
-                infoRepository.getLastSavedUserInfo(info.getId()).setHours(Integer.parseInt(info.getText()));
-            } catch (NumberFormatException e) {
-                System.err.println("Unexpected format of received message");
-            }
-        }
+        info.setHours(messageProcessor.tryGetAsSaveDateFromat(info.getText()));
+        if (info.getHours() != -1) infoRepository.saveAndFlush(info);
     }
 
     private Info selectInfoFromJson(String json) {

@@ -22,7 +22,7 @@ public class Info {
     private Date date = Date.valueOf(LocalDate.now());
 
     @Column(name = "hours")
-    private int hours;
+    private int hours = -1;
 
     private String text;
 

@@ -6,6 +6,7 @@ import com.simplebot.model.facebookpostedmessage.PostMessage;
 import com.simplebot.model.facebookpostedmessage.Recipient;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.Optional;
 
 /**
@@ -14,16 +15,14 @@ import java.util.Optional;
 @Service
 public class MessageProcessor {
 
-    public Optional<PostMessage> processMessage(Info info) {
-        if (info.getText().equals("log hours")) {
-            PostMessage postMessage = new PostMessage();
-            Message message = new Message("How much hours you were working today?");
-            Recipient recipient = new Recipient(info.getUsedId());
-            postMessage.setMessage(message);
-            postMessage.setRecipient(recipient);
-            Optional<PostMessage> optional = Optional.of(postMessage);
-            return optional;
+    public int tryGetAsSaveDateFromat(String textMessage) {
+        try {
+            if (textMessage.split(" ")[0].equals("logtime"))
+                return Integer.parseInt(textMessage.split(" ")[1]);
         }
-        return Optional.empty();
+        catch (Exception e) {
+            System.err.println("Unexpected format of received message");
+        }
+        return -1;
     }
 }
