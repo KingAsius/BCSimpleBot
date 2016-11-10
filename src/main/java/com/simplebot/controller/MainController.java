@@ -20,7 +20,7 @@ public class MainController {
     @Autowired private ReceivedMessageService infoService;
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public void PostMessageInfo(@RequestBody ReceivedMessage receivedMessage) throws IOException {
+    public void PostMessageInfo(@RequestBody ReceivedMessage receivedMessage) {
         infoService.processReceivedMessage(receivedMessage);
 
     }
