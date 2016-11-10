@@ -36,6 +36,7 @@ public class ReceivedMessageService {
         }
         else {
             Info info = infoRepository.findTop1ByUserIdOrderByIdDesc(Long.parseLong(receivedMessage.getSenderId()));
+            //if user have lines in db
             if (info != null) {
                 //if user don't write time to the last log yet, try to get the message as time
                 if (info.getHours() == null) {
