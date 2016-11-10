@@ -1,7 +1,9 @@
 package com.simplebot.controller;
 
-import com.simplebot.service.InfoService;
+import com.simplebot.model.facebookreceivedmessage.ReceivedMessage;
+import com.simplebot.service.ReceivedMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,23 +16,21 @@ import java.io.IOException;
 @RestController
 public class MainController {
 
-    private static String FACEBOOK_POST_URL = "https://graph.facebook.com/v2.6/me/messages?access_token=";
-    private static String ACCESS_TOKEN = "EAAQRCHoSZAuEBABZBaJ11S5P6JPnIFFXqWxY4ZCPc90C0X2n2ODPZB59zmmTyXmikrqoikbg6xr7vPr3WDxP6JSL3FZCVrhPENEKfzHViaOILHu9NfJ0L38QHjm5NlmtqIzFY3alyIqHsQ0EHgSo1cRqZAkiuJiQ0uZCHOb0Tal571d0NNIcusM";
-    @Autowired
-    private InfoService infoService;
+    @Value("${social.facebook.verifytoken}") private String VERIFICATION_TOKEN;
+    @Autowired private ReceivedMessageService infoService;
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public void PostMessageInfo(@RequestBody String messagesRecieved) throws IOException {
-        infoService.processReceivedMessage(messagesRecieved);
-    }
+    public void PostMessageInfo(@RequestBody ReceivedMessage receivedMessage) throws IOException {
+        infoService.processReceivedMessage(receivedMessage);
 
+    }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ResponseEntity<String> index(@RequestParam(value = "hub.challenge", required = true) String challenge,
                                         @RequestParam(value = "hub.verify_token", required = true) String facebookToken) {
-        String verificationToken = "verify_token";
-        if (verificationToken != null) {
-            if (verificationToken.equals(facebookToken)) {
+
+        if (facebookToken != null) {
+            if (VERIFICATION_TOKEN.equals(facebookToken)) {
                 return new ResponseEntity<String>(challenge, HttpStatus.OK);
             }
         }

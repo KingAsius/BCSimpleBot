@@ -1,8 +1,6 @@
 package com.simplebot.entity;
 
 import javax.persistence.*;
-import java.sql.Date;
-import java.time.LocalDate;
 
 /**
  * Created by Vladislav on 11/3/2016.
@@ -13,64 +11,49 @@ public class Info {
 
     @Id
     @GeneratedValue
-    private int id;
-
-    @Column(name = "userId")
-    private long usedId;
+    private Integer id;
 
     @Column
-    private Date date = Date.valueOf(LocalDate.now());
+    private Integer hours;
 
-    @Column(name = "hours")
-    private int hours = -1;
+    @Column
+    private String description;
 
-    private String text;
+    @ManyToOne
+    private User user;
 
-    public int getHours() {
-        return hours;
-    }
-
-    public void setHours(int hours) {
-        this.hours = hours;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public long getUsedId() {
-        return usedId;
-    }
-
-    public void setUsedId(long usedId) {
-        this.usedId = usedId;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    public Info(long usedId, int hours) {
-        this.usedId = usedId;
+    public void setHours(Integer hours) {
         this.hours = hours;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public Info() {
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public Integer getHours() {
+        return hours;
     }
 }
